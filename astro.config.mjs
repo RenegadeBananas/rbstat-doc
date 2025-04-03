@@ -11,7 +11,7 @@ export default defineConfig({
 			title: "My Docs",
 			customCss:[
 				// Path to your custom CSS file
-				'./src/styles/custom.css',
+				'/src/styles/custom.css',
 			],
 			social: {
 				github: "https://github.com/withastro/starlight",
