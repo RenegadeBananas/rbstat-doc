@@ -23,7 +23,7 @@ export default defineConfig({
 						// Each item here is one entry in the navigation menu.
 						{
 							label: "Plugin installation",
-							slug: "get-started"
+							slug: "index"
 						},
 						{
 							label: "Create your stat component",

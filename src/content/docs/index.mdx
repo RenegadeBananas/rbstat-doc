@@ -1,39 +1,48 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash
-hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
-  actions:
-    - text: Example Guide
-      link: /guides/example/
-      icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
+title: Get started
+description: Learn how to setup the plugin !
 ---
 
-import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { Card, CardGrid, Steps, LinkCard } from '@astrojs/starlight/components';
 
-## Next steps
+## Installation
 
-<CardGrid stagger>
-	<LinkCard title="Get started" href="/get-started/">
-		Test
-	</LinkCard>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
-</CardGrid>
+<img src="../assets/title.jpg" alt=""/>
+
+RB Stat is a plugin allowing you to create RPG-typed characteristics (hunger, health, mana, experience, etc...) in few clicks, in C++ and BP, auto-replicating. Each stat can receive temporary bonus, which allow you to connect it easily to your buff/equipment system.
+
+### Activate the plugin
+
+<Steps>
+	<ol>
+		<li>
+			<b>Get the plugin on Fab.</b>
+			
+			<LinkCard
+				title="RB - Stat Plugin on Fab"
+				href="https://www.fab.com/listings/8e6b48b6-74bc-4e91-be0a-ac63bc956c8e"
+			/>
+		</li>
+			
+		<li>
+			<b>Add the plugin to your project.</b>
+			
+			In the Epic Launcher, go to Unreal Engine > Library.<br/>
+			Scroll down to the Fab Library and add the plugin the your project.
+		</li>
+
+		<li>
+			<b>Be sure it's enabled in plugin setting.</b>
+			
+			Go to Edit > Plugins.<br/>
+			Check if RBStat is enabled.<br/>
+			
+			<img src="../assets/enabled.png" alt=""/>
+		</li>
+
+		<li>
+			<b>It's ready to use !</b>
+		</li>
+	</ol>
+
+</Steps>
