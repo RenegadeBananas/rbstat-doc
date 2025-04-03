@@ -1,0 +1,30 @@
+---
+title: Hide undesired stat in FStatModifier
+description: How to hide undesired stat in FStatModifier
+---
+
+import { Card, CardGrid, Steps, LinkCard, Aside } from '@astrojs/starlight/components';
+
+If you use a [FStatModifier](/structs/fstatmodifier) in the editor, you will see in StatName your stats, but also example ones from the plugin.
+
+<img src="../../assets/stat-name-all.png" alt=""/>
+
+### How to hide other stats
+
+<Steps>
+	<ol>
+		<li>
+			<b>Go in Project Settings > Plugins > RBStat</b>
+		</li>
+		<li>
+			<b>Select your stat component parent class</b>
+			
+			<img src="../../assets/stat-name-setting.png" alt=""/>
+		</li>
+		<li>
+			<b>Now only the stats of your parent class and derived classes are shown</b>
+			
+			<img src="../../assets/stat-name-hidden.png" alt=""/>
+		</li>
+	</ol>
+</Steps>

@@ -1,0 +1,166 @@
+---
+title: Create your stat component
+description: Learn how to create your stat component
+---
+
+import { Card, CardGrid, Steps, LinkCard, Code } from '@astrojs/starlight/components';
+import statcomponentheader from './src/content/codes/statcomponent.h?raw';
+import statcomponentcpp from './src/content/codes/statcomponent.cpp?raw';
+
+## Blueprint
+
+### Create new stat component class
+
+<Steps>
+	<ol>
+		<li>
+			<b>Right click in the Content Browser</b>
+			
+			Select <b>Blueprint Class.</b>
+			<img src="../../assets/bp_create_class.png" alt=""/>
+		</li>
+		<li>
+			<b>Pick parent class</b>
+			
+			In <b>All classes</b>, pick <b>StatComponent</b>.
+			<img src="../../assets/bp_create_component.png" alt=""/>
+		</li>
+		<li>
+			Your component is ready to be added to your character !
+		</li>
+	</ol>
+</Steps>
+
+### Add stats
+
+<Steps>
+	<ol>
+		<li>
+			<b>Open your component blueprint</b>
+		</li>
+		<li>
+			<b>Add one variable by stat you need</b>
+			
+			There are 4 base classes for your stats.
+			<div style="width: max-content;">
+				<LinkCard
+					class="link-card-custom"
+					title="UStatBase"
+					href="../classes/ustatbase"
+					description="UStatBase is the most basic stat, with only one value and the bonus system. Typically used for one value stat like armor."
+				/>
+				<LinkCard 
+					title="URangeValueStat"
+					href="../classes/urangevaluestat"
+					description="URangeValueStat is a value with min and max limit. Typically used for one value stat like health in soulslike."
+				/>
+				<LinkCard
+					title="URegenStat"
+					href="../classes/uregenstat"
+					description="URegenStat is the most basic stat, with only one value and the bonus system. Typically used for one value stat like armor."
+				/>
+				<LinkCard
+					title="UExperienceStat"
+					href="../classes/uexperiencestat"
+					description="UExperienceStat is a stat with experience/level system. Typically used for experience or skill stats."
+				/>
+			</div>
+			
+			<img src="../../assets/variables.png" alt=""/>
+		</li>
+		<li>
+			<b>Be sure to create your stat on serverside</b>
+			
+			<img src="../../assets/serveronly.png" alt=""/>
+		</li>
+		<li>
+			<b>Use the node CreateNewStat on your stat variable</b>
+			
+			The node will detect automatically the class of the variable and create the right instance.
+			
+			<img src="../../assets/bp_create_stat.png" alt=""/>
+		</li>
+		<li>
+			<b>Initialize your stat</b>
+			
+			Each stat class has its own Init() function.
+			
+			<img src="../../assets/bp_init_stat.png" alt=""/>
+		</li>
+		<li>
+			<b>Repeat the process for all your stats</b>
+			
+			You can use a Sequence node to organize your stat creation/initialization.
+		</li>
+		<li>
+			<b>Don't forget to replicate your stats</b>
+			
+			<img src="../../assets/bp_stat_replicate.png" alt=""/>
+		</li>
+		<li>
+			<b>Your stats are ready to be used !</b>
+		</li>
+	</ol>
+</Steps>
+
+## C++
+
+### Create new stat component class
+
+<Steps>
+	<ol>
+		<li>
+			<b>In Editor, go to Tools > New C++ Class</b>
+		</li>
+		<li>
+			<b>Pick parent class</b>
+			
+			In <b>All classes</b>, pick <b>StatComponent</b>.
+			<img src="../../assets/cpp_create_component.png" alt=""/>
+		</li>
+		<li>
+			<b>Your component is ready to be added to your character !</b>
+		</li>
+	</ol>
+</Steps>
+
+### Add stats
+
+<Steps>
+	<ol>
+		<li>
+			<b>Add one variable by stat you need</b>
+			
+			There are 4 base classes for your stats.
+			<div style="width: max-content;">
+				<LinkCard
+					class="link-card-custom"
+					title="UStatBase"
+					href="../classes/ustatbase"
+					description="UStatBase is the most basic stat, with only one value and the bonus system. Typically used for one value stat like armor."
+				/>
+				<LinkCard 
+					title="URangeValueStat"
+					href="../classes/urangevaluestat"
+					description="URangeValueStat is a value with min and max limit. Typically used for one value stat like health in soulslike."
+				/>
+				<LinkCard
+					title="URegenStat"
+					href="../classes/uregenstat"
+					description="URegenStat is the most basic stat, with only one value and the bonus system. Typically used for one value stat like armor."
+				/>
+				<LinkCard
+					title="UExperienceStat"
+					href="../classes/uexperiencestat"
+					description="UExperienceStat is a stat with experience/level system. Typically used for experience or skill stats."
+				/>
+			</div>
+			
+			<Code code={statcomponentheader} lang="cpp" title={"header"}/>
+			<Code code={statcomponentcpp} lang="cpp" title={"cpp"}/>
+		</li>
+		<li>
+			<b>Your stats are ready to be used !</b>
+		</li>
+	</ol>
+</Steps>

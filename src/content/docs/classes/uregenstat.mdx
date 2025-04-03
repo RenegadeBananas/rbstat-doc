@@ -1,0 +1,279 @@
+---
+title: URegenStat
+description: URegenStat
+---
+
+import { Card, CardGrid, Steps, LinkCard, Aside } from '@astrojs/starlight/components';
+
+URegenStat is a URangeValueStat with regeneration over time. Typically used for mana.
+
+### Inheritance Hierarchy
+
+[UObject](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/CoreUObject/UObject/UObject)<br/>
+URBStat_RepObject<br/>
+[UStatBase](../../classes/ustatbase)<br/>
+[URangeValueStat](../../classes/urangevaluestat)
+
+### References
+
+<table class="table" style="--columns-count: 2;">
+	<tbody>
+		<tr>
+			<td>Module</td>
+			<td>RBStat</td>
+		</tr>
+		<tr>
+			<td>Header</td>
+			<td>/RBStat/Source/RBStat/Public/Stat/RegenStat.h</td>
+		</tr>
+		<tr>
+			<td>Include</td>
+			<td>#include "Stat/RegenStat.h"</td>
+		</tr>
+	</tbody>
+</table>
+
+### Variables
+
+<table class="table" style="--columns-count: 4;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="RegenTimer">
+			<td class="td-1-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+			</td>
+			<td>[FTimerHandle](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Engine/FTimerHandle)</td>
+			<td>RegenTimer</td>
+			<td>
+				Timer handling the regeneration. Call [Regen](#Regen)() every [TickRate](#TickRate) seconds.
+			</td>
+		</tr>
+		<tr id="TickRate">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_serialization.png" alt="Replicated" title="Replicated"/>
+			</td>
+			<td>float</td>
+			<td>TickRate</td>
+			<td>
+				Delay between regen tick in sec.
+			</td>
+		</tr>
+		<tr id="RegenValue" class="no-border-bottom">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_serialization.png" alt="Replicated" title="Replicated"/>
+			</td>
+			<td>float</td>
+			<td>RegenValue</td>
+			<td>
+				Quantity added (or removed) to [CurrentValue](../ustatbase#CurrentValue) by sec.<br/>
+				
+				OnRep : [OnRep_RegenValue()](#OnRep_RegenValue)<br/>
+				Setter : [SetRegenValue()](#SetRegenValue)
+			</td>
+		</tr>
+		<tr class="no-border-top">
+			<td colspan="5">
+				<Aside type="caution">Setter should be used to set this value.</Aside>
+				<Aside type="note">This value is the regen for 1 second, whatever is [TickRate](#TickRate) value. When regen tick, [RegenValue](#RegenValue) * TickRate will be added to [CurrentValue](../ustatbase#CurrentValue) every TickRate seconds.</Aside>
+			</td>
+		</tr>
+		<tr id="RegenValueWithBonus">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_serialization.png" alt="Replicated" title="Replicated"/>
+			</td>
+			<td>float</td>
+			<td>RegenValueWithBonus</td>
+			<td>
+				Quantity added (or removed) to [CurrentValue](../ustatbase#CurrentValue) by sec. with stat's bonuses.<br/> Recalculated each time a bonus is added/ended or when the regen value changes.
+				
+				OnRep : [OnRep_RegenValueWithBonus()](#OnRep_RegenValueWithBonus)
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+### Functions
+
+<table class="table" style="--columns-count: 5;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Params</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="Init">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>Init</td>
+			<td>
+				[UStatComponent](../../classes/ustatcomponent)* InStatComp,<br/>
+				float InCurrentValue,<br/>
+				float InMin,<br/>
+				float InMax,<br/>
+				float InTickRate,<br/>
+				float InRegenValue<br/>
+			</td>
+			<td>Initialize the stat.</td>
+		</tr>
+		<tr>
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>Init</td>
+			<td>
+				[UStatComponent](../../classes/ustatcomponent)* InStatComp,<br/>
+				const [FRegenInit](../../structs/fregeninit)& RegenInit
+			</td>
+			<td>Initialize the stat with init structure.</td>
+		</tr>
+		<tr id="InitRegenValue">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>InitRegenValue</td>
+			<td>
+				[UStatComponent](../../classes/ustatcomponent)* InStatComp,<br/>
+				const [FRegenInit](../../structs/fregeninit)& RegenInit
+			</td>
+			<td>Blueprint callable version of Init().</td>
+		</tr>
+		<tr id="GetLifetimeReplicatedProps">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>GetLifetimeReplicatedProps</td>
+			<td style="white-space: nowrap;">
+				TArray\<FLifetimeProperty\>& OutLifetimeProps
+			</td>
+			<td>UE's replication function. Handle properties replication.</td>
+		</tr>
+		<tr id="OnRep_RegenValue">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>OnRep_RegenValue</td>
+			<td>
+				float OldRegenValue
+			</td>
+			<td>Called [RegenValue](#RegenValue) is replicated.</td>
+		</tr>
+		<tr id="OnRep_RegenValueWithBonus">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>OnRep_RegenValueWithBonus</td>
+			<td>
+				float OldRegenValueWithBonus
+			</td>
+			<td>Called [RegenValueWithBonus](#RegenValueWithBonus) is replicated.</td>
+		</tr>
+		<tr id="OnRep_StatBonus">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>OnRep_StatBonus</td>
+			<td>
+				TArray\<[UStatBonus](../../classes/ustatbonus)*\> OldStatBonus
+			</td>
+			<td>Called [StatBonus](../ustatbase#StatBonus) is replicated.</td>
+		</tr>
+		<tr id="SetRegenValue" class="no-border-bottom">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>SetRegenValue</td>
+			<td>
+				float NewValue
+			</td>
+			<td>Setter of [RegenValue](#RegenValue).</td>
+		</tr>
+		<tr class="no-border-top">
+			<td colspan="5">
+				<Aside type="caution">Should be used to set this value.</Aside>
+			</td>
+		</tr>
+		<tr id="Regen">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>Regen</td>
+			<td>
+			</td>
+			<td>Called every [TickRate](#TickRate) seconds. Add [RegenValue](#RegenValue) * TickRate to [CurrentValue](../ustatbase#CurrentValue) every TickRate seconds.</td>
+		</tr>
+		<tr id="UpdateValueWithBonus">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>UpdateValueWithBonus</td>
+			<td>
+				[UStatBonus](../../classes/ustatbonus)* Bonus
+			</td>
+			<td>Update the value with bonus if needed. Called when a bonus is added or removed.</td>
+		</tr>
+		<tr id="CalculateRegenValueWithBonus">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>CalculateRegenValueWithBonus</td>
+			<td>
+			</td>
+			<td>Update the [RegenValue](#RegenValue) with bonus if needed.</td>
+		</tr>
+		<tr id="Debug">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>Debug</td>
+			<td>
+			</td>
+			<td>Debug only. Display the stat value in the log.</td>
+		</tr>
+	</tbody>
+</table>

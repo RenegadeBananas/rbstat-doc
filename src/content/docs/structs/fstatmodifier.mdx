@@ -1,0 +1,86 @@
+---
+title: FStatModifier
+description: FStatModifier
+---
+
+import { Card, CardGrid, Steps, LinkCard, Aside } from '@astrojs/starlight/components';
+
+FStatModifier is a struct to init a [UBonusStat](../../classes/ubonusstat).
+
+### References
+
+<table class="table" style="--columns-count: 2;">
+	<tbody>
+		<tr>
+			<td>Module</td>
+			<td>RBStat</td>
+		</tr>
+		<tr>
+			<td>Header</td>
+			<td>/RBStat/Source/RBStat/Public/Stat/StatType.h</td>
+		</tr>
+		<tr>
+			<td>Include</td>
+			<td>#include "Stat/StatType.h"</td>
+		</tr>
+	</tbody>
+</table>
+
+### Variables
+
+<table class="table" style="--columns-count: 4;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="StatName">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+			</td>
+			<td>FString</td>
+			<td>StatName</td>
+			<td>
+				Starting level of the stat.
+			</td>
+		</tr>
+		<tr id="Value">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+			</td>
+			<td>float</td>
+			<td>Value</td>
+			<td>
+				Multiplier increasing/decreasing experience won.
+			</td>
+		</tr>
+		<tr id="ModifierType">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+			</td>
+			<td>[EStatModifierType](../../enums/estatmodifiertype)</td>
+			<td>ModifierType</td>
+			<td>
+				How the value should be added. Additive, pourcentage or multiplicative.
+			</td>
+		</tr>
+		<tr id="TargetValue">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+			</td>
+			<td>[EStatTargetValue](../../enums/estattargetvalue)</td>
+			<td>TargetValue</td>
+			<td>
+				Which value should be affected by this bonus.
+			</td>
+		</tr>
+	</tbody>
+</table>

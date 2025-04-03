@@ -1,0 +1,149 @@
+---
+title: UStatBonus
+description: UStatBonus
+---
+
+import { Card, CardGrid, Steps, LinkCard, Aside } from '@astrojs/starlight/components';
+
+UStatBonus is a temporary bonus that can affect a stat. Useful for equipment/buff system to interact with the stat system.
+
+### Inheritance Hierarchy
+
+[UObject](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/CoreUObject/UObject/UObject)<br/>
+URBStat_RepObject<br/>
+
+### References
+
+<table class="table" style="--columns-count: 2;">
+	<tbody>
+		<tr>
+			<td>Module</td>
+			<td>RBStat</td>
+		</tr>
+		<tr>
+			<td>Header</td>
+			<td>/RBStat/Source/RBStat/Public/Stat/StatBonus.h</td>
+		</tr>
+		<tr>
+			<td>Include</td>
+			<td>#include "Stat/StatBonus.h""</td>
+		</tr>
+	</tbody>
+</table>
+
+
+### Variables
+
+<table class="table" style="--columns-count: 4;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="Stat">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_serialization.png" alt="Replicated" title="Replicated"/>
+			</td>
+			<td>[UStatBase](../ustatbase)*</td>
+			<td>Stat</td>
+			<td>
+				Stat affected by this bonus.
+			</td>
+		</tr>
+		<tr id="Value">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_serialization.png" alt="Replicated" title="Replicated"/>
+			</td>
+			<td>float</td>
+			<td>Value</td>
+			<td>
+				Value added by this bonus.
+			</td>
+		</tr>
+		<tr id="ModifierType">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_serialization.png" alt="Replicated" title="Replicated"/>
+			</td>
+			<td>[EStatModifierType](../../enums/estatmodifiertype)</td>
+			<td>ModifierType</td>
+			<td>
+				How the value should be added. Additive, pourcentage or multiplicative.
+			</td>
+		</tr>
+		<tr id="TargetValue">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_serialization.png" alt="Replicated" title="Replicated"/>
+			</td>
+			<td>[EStatTargetValue](../../enums/estattargetvalue)</td>
+			<td>TargetValue</td>
+			<td>
+				Which value should be affected by this bonus.
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+### Functions
+
+<table class="table" style="--columns-count: 5;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Params</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="Init">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>Init</td>
+			<td>
+				[UStatBase](../ustatbase)* InStat,<br/>
+				[FStatModifier](../../structs/fstatmodifier) StatModifier
+			</td>
+			<td>Init the bonus.</td>
+		</tr>
+		<tr id="End">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>End</td>
+			<td>
+			</td>
+			<td>Destroy the bonus and remove it from the stat affected.</td>
+		</tr>
+		<tr id="GetLifetimeReplicatedProps">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>GetLifetimeReplicatedProps</td>
+			<td style="white-space: nowrap;">
+				TArray\<FLifetimeProperty\>& OutLifetimeProps
+			</td>
+			<td>UE's replication function. Handle properties replication.</td>
+		</tr>
+	</tbody>
+</table>

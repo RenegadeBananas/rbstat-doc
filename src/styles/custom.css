@@ -1,0 +1,78 @@
+.sl-container {
+	margin-left: 1 !important;
+	margin-right: 1 !important;
+	justify-self: center !important;
+	margin-inline: 0;
+	width: 100%;
+	max-width: 100%;
+}
+
+@media (min-width: 72rem) {
+  [data-has-sidebar][data-has-toc] .main-pane {
+    width: 100% !important; /* Override with !important */
+    --sl-content-margin-inline: 0 0 !important; /* Reset margins */
+  }
+}
+
+.content-container {
+  margin-right: var(--sl-sidebar-width);
+}
+
+.right-sidebar-container {
+	width: var(--sl-sidebar-width);
+}
+
+.link-card-custom {
+    width: 100%;
+}
+
+/*tr*/
+.no-border-bottom td {
+    border-bottom: none !important; /* Retirer la bordure du bas pour tous les <td> de cette ligne */
+}
+
+.no-border-top td {
+    border-top: none !important; /* Retirer la bordure du bas pour tous les <td> de cette ligne */
+}
+
+/*td*/
+.td-1-icon {
+	white-space: nowrap !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 20px !important;
+}
+
+.td-2-icon {
+	white-space: nowrap !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 40px !important;
+}
+
+.td-3-icon {
+	white-space: nowrap !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 60px !important;
+	box-sizing: border-box !important;
+}
+
+.td-4-icon {
+	white-space: nowrap !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 80px !important;
+}
+
+/*img*/
+.UE-icon {
+	width: 20px !important;
+	height: 20px !important;
+	display: inline-block !important;
+	position: relative;
+	top: 4px;
+	margin: 0 !important;
+	padding: 0 !important;
+	max-width: unset !important;
+}

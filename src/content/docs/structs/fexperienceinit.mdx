@@ -1,0 +1,96 @@
+---
+title: FExperienceInit
+description: FExperienceInit
+---
+
+import { Card, CardGrid, Steps, LinkCard, Aside } from '@astrojs/starlight/components';
+
+FExperienceInit is a struct to init a [UExperienceStat](../../classes/uexperiencestat).
+
+### Inheritance Hierarchy
+
+[FStatBaseInit](../fstatbaseinit)<br/>
+[FRangeValueInit](../frangevalueinit)
+
+### References
+
+<table class="table" style="--columns-count: 2;">
+	<tbody>
+		<tr>
+			<td>Module</td>
+			<td>RBStat</td>
+		</tr>
+		<tr>
+			<td>Header</td>
+			<td>/RBStat/Source/RBStat/Public/Stat/ExperienceStat.h</td>
+		</tr>
+		<tr>
+			<td>Include</td>
+			<td>#include "Stat/ExperienceStat.h"</td>
+		</tr>
+	</tbody>
+</table>
+
+### Constructors
+
+<table class="table" style="--columns-count: 3;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Name</th>
+			<th>Params</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="FRangeValueInit">
+			<td class="td-1-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+			</td>
+			<td>FRangeValueInit</td>
+			<td>
+				float InCurrentValue,<br/>
+				float InMin,<br/>
+				float InMax,<br/>
+				int32 InStartLevel,<br/>
+				float InExpModifier
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+### Variables
+
+<table class="table" style="--columns-count: 4;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="StartLevel">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+			</td>
+			<td>int32</td>
+			<td>StartLevel</td>
+			<td>
+				Starting level of the stat.
+			</td>
+		</tr>
+		<tr id="ExpModifier">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+			</td>
+			<td>float</td>
+			<td>ExpModifier</td>
+			<td>
+				Multiplier increasing/decreasing experience won.
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,401 @@
+---
+title: URangeValueStat
+description: URangeValueStat
+---
+
+import { Card, CardGrid, Steps, LinkCard, Aside } from '@astrojs/starlight/components';
+
+URangeValueStat is a value with min and max limit. Typically used for stat like health in soulslike.
+
+### Inheritance Hierarchy
+
+[UObject](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/CoreUObject/UObject/UObject)<br/>
+URBStat_RepObject<br/>
+[UStatBase](../../classes/ustatbase)
+
+### References
+
+<table class="table" style="--columns-count: 2;">
+	<tbody>
+		<tr>
+			<td>Module</td>
+			<td>RBStat</td>
+		</tr>
+		<tr>
+			<td>Header</td>
+			<td>/RBStat/Source/RBStat/Public/Stat/RangeValueStat.h</td>
+		</tr>
+		<tr>
+			<td>Include</td>
+			<td>#include "Stat/RangeValueStat.h"</td>
+		</tr>
+	</tbody>
+</table>
+
+### Events
+<table class="table" style="--columns-count: 4;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="OnMinReached">
+			<td class="td-1-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintAssignable" title="BlueprintAssignable"/>
+			</td>
+			<td>FOnMinReached</td>
+			<td>OnMinReached</td>
+			<td>Called when the [CurrentValue](../ustatbase#CurrentValue) reach the [Min](#Min) value.</td>
+		</tr>
+		<tr id="OnMaxReached">
+			<td class="td-1-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintAssignable" title="BlueprintAssignable"/>
+			</td>
+			<td>FOnMaxReached</td>
+			<td>OnMaxReached</td>
+			<td>Called when the [CurrentValue](../ustatbase#CurrentValue) reach the [Max](#Max) value.</td>
+		</tr>
+	</tbody>
+</table>
+
+### Variables
+
+<table class="table" style="--columns-count: 4;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="Min" class="no-border-bottom">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_serialization.png" alt="Replicated" title="Replicated"/>
+			</td>
+			<td>float</td>
+			<td>Min</td>
+			<td>
+				Limit minimum of the stat.<br/>
+				
+				OnRep : [OnRep_Min()](#OnRep_Min)<br/>
+				Setter : [SetMin()](#SetMin)
+			</td>
+		</tr>
+		<tr class="no-border-top">
+			<td colspan="5">
+				<Aside type="caution">Setter should be used to set this value.</Aside>
+			</td>
+		</tr>
+		<tr id="Max" class="no-border-bottom">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_serialization.png" alt="Replicated" title="Replicated"/>
+			</td>
+			<td>float</td>
+			<td>Max</td>
+			<td>
+				Limit maximum of the stat.<br/>
+				
+				OnRep : [OnRep_Max()](#OnRep_Max)<br/>
+				Setter : [SetMax()](#SetMax)
+			</td>
+		</tr>
+		<tr class="no-border-top">
+			<td colspan="5">
+				<Aside type="caution">Setter should be used to set this value.</Aside>
+			</td>
+		</tr>
+		<tr id="MaxWithBonus">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_serialization.png" alt="Replicated" title="Replicated"/>
+			</td>
+			<td>float</td>
+			<td>MaxWithBonus</td>
+			<td>
+				Max value of the stat with stat's bonuses.<br/> Recalculated each time a bonus is added/ended or when the max value changes.<br/>
+				
+				OnRep : [OnRep_MaxWithBonus()](#OnRep_MaxWithBonus)
+			</td>
+		</tr>
+		<tr id="KeepCurrentMaxRatio">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+			</td>
+			<td>bool</td>
+			<td>KeepCurrentMaxRatio</td>
+			<td>
+				If true, will keep the same [CurrentValue](../ustatbase#CurrentValue)/[Max](#Max) ratio if the Max value changes.<br/>
+				
+				Example : CurrentValue = 50 | Max = 100 (50%) -> CurrentValue = 55 | Max = 110 (50%)
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+### Functions
+
+<table class="table" style="--columns-count: 5;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Params</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="Init">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>Init</td>
+			<td>
+				[UStatComponent](../../classes/ustatcomponent)* InStatComp,<br/>
+				float InCurrentValue,<br/>
+				float InMin,<br/>
+				float InMax
+			</td>
+			<td>Initialize the stat.</td>
+		</tr>
+		<tr>
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>Init</td>
+			<td>
+				[UStatComponent](../../classes/ustatcomponent)* InStatComp,<br/>
+				const [FRangeValueInit](../../structs/frangevalueinit)& RangeValueInit
+			</td>
+			<td>Initialize the stat with init structure.</td>
+		</tr>
+		<tr id="InitRangeValue">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>InitRangeValue</td>
+			<td>
+				[UStatComponent](../../classes/ustatcomponent)* InStatComp,<br/>
+				const [FRangeValueInit](../../structs/frangevalueinit)& RangeValueInit
+			</td>
+			<td>Blueprint callable version of Init().</td>
+		</tr>
+		<tr id="GetLifetimeReplicatedProps">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>GetLifetimeReplicatedProps</td>
+			<td style="white-space: nowrap;">
+				TArray\<FLifetimeProperty\>& OutLifetimeProps
+			</td>
+			<td>UE's replication function. Handle properties replication.</td>
+		</tr>
+		<tr id="StatUpdated">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>StatUpdated</td>
+			<td></td>
+			<td>Trigger [OnStatUpdated](../ustatbase#OnStatUpdated) event.<br/>
+			Also trigger [OnMinReached](#OnMinReached)/[OnMaxReached](#OnMaxReached) if [CurrentValue](../ustatbase#CurrentValue) reach [Min](#Min)/[Max](Max).</td>
+		</tr>
+		
+		<tr id="OnRep_Min">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>OnRep_Min</td>
+			<td>
+				float OldMin
+			</td>
+			<td>Called [Min](#Min) is replicated.</td>
+		</tr>
+		<tr id="OnRep_Max">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>OnRep_Max</td>
+			<td>
+				float OldMax
+			</td>
+			<td>Called [Max](#Max) is replicated.</td>
+		</tr>
+		<tr id="OnRep_MaxWithBonus">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>OnRep_MaxWithBonus</td>
+			<td>
+				float OldMaxWithBonus
+			</td>
+			<td>Called [MaxWithBonus](#MaxWithBonus) is replicated.</td>
+		</tr>
+		<tr id="OnRep_StatBonus">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>OnRep_StatBonus</td>
+			<td>
+				TArray\<[UStatBonus](../../classes/ustatbonus)*\> OldStatBonus
+			</td>
+			<td>Called [StatBonus](../ustatbase#StatBonus) is replicated.</td>
+		</tr>
+		<tr id="SetCurrentValue" class="no-border-bottom">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>SetCurrentValue</td>
+			<td>
+				float NewValue
+			</td>
+			<td>Setter of [CurrentValue](../ustatbase#CurrentValue).</td>
+		</tr>
+		<tr class="no-border-top">
+			<td colspan="5">
+				<Aside type="caution">Should be used to set this value.</Aside>
+			</td>
+		</tr>
+		<tr id="SetMin" class="no-border-bottom">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>SetMin</td>
+			<td>
+				float NewValue
+			</td>
+			<td>Setter of [Min](#Min).</td>
+		</tr>
+		<tr class="no-border-top">
+			<td colspan="5">
+				<Aside type="caution">Should be used to set this value.</Aside>
+			</td>
+		</tr>
+		<tr id="SetMax" class="no-border-bottom">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>SetMax</td>
+			<td>
+				float NewValue
+			</td>
+			<td>Setter of [Max](#Max).</td>
+		</tr>
+		<tr class="no-border-top">
+			<td colspan="5">
+				<Aside type="caution">Should be used to set this value.</Aside>
+			</td>
+		</tr>
+		<tr id="GetCurrentMaxRatioNormalized">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable, BlueprintPure" title="BlueprintCallable, BlueprintPure"/>
+			</td>
+			<td>float</td>
+			<td>GetCurrentMaxRatioNormalized</td>
+			<td>
+			</td>
+			<td>Return ratio [CurrentValue](../ustatbase#CurrentValue)/[Max](#Max) normalized to range [0.0 - 1.0].</td>
+		</tr>
+		<tr id="GetCurrentMaxRatioPercent">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable, BlueprintPure" title="BlueprintCallable, BlueprintPure"/>
+			</td>
+			<td>float</td>
+			<td>GetCurrentMaxRatioPercent</td>
+			<td>
+			</td>
+			<td>Return ratio [CurrentValue](../ustatbase#CurrentValue)/[Max](#Max) in %.</td>
+		</tr>
+		<tr id="UpdateValueWithBonus">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>UpdateValueWithBonus</td>
+			<td>
+				[UStatBonus](../../classes/ustatbonus)* Bonus
+			</td>
+			<td>Update the value with bonus if needed. Called when a bonus is added or removed.</td>
+		</tr>
+		<tr id="CalculateCurrentValueWithBonus">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>CalculateCurrentValueWithBonus</td>
+			<td>
+			</td>
+			<td>Update the [CurrentValue](../ustatbase#CurrentValue) with bonus if needed.</td>
+		</tr>
+		<tr id="CalculateMaxWithBonus">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>CalculateMaxWithBonus</td>
+			<td>
+			</td>
+			<td>Update the [MaxWithBonus](#MaxWithBonus) with bonus if needed.</td>
+		</tr>
+		<tr id="Debug">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>Debug</td>
+			<td>
+			</td>
+			<td>Debug only. Display the stat value in the log.</td>
+		</tr>
+	</tbody>
+</table>

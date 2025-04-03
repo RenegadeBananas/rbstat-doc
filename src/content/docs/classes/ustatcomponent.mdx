@@ -1,0 +1,115 @@
+---
+title: UStatComponent
+description: UStatComponent
+---
+
+import { Card, CardGrid, Steps, LinkCard, Aside } from '@astrojs/starlight/components';
+
+UStatComponent is the component which handle the stats of an actor.
+
+### Inheritance Hierarchy
+
+[UActorComponent](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/Engine/Components/UActorComponent)<br/>
+
+### References
+
+<table class="table" style="--columns-count: 2;">
+	<tbody>
+		<tr>
+			<td>Module</td>
+			<td>RBStat</td>
+		</tr>
+		<tr>
+			<td>Header</td>
+			<td>/RBStat/Source/RBStat/Public/Stat/StatComponent.h</td>
+		</tr>
+		<tr>
+			<td>Include</td>
+			<td>#include "Stat/StatComponent.h"</td>
+		</tr>
+	</tbody>
+</table>
+
+### Functions
+
+<table class="table" style="--columns-count: 5;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Params</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="GetLifetimeReplicatedProps">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+			</td>
+			<td>void</td>
+			<td>GetLifetimeReplicatedProps</td>
+			<td style="white-space: nowrap;">
+				TArray\<FLifetimeProperty\>& OutLifetimeProps
+			</td>
+			<td>UE's replication function. Handle properties replication.</td>
+		</tr>
+		<tr id="GetAllStatName">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_static.png" alt="Virtual" title="Static"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_meta_other.png" alt="CallInEditor" title="CallInEditor"/>
+			</td>
+			<td>TArray\<FString\></td>
+			<td>GetAllStatName</td>
+			<td>
+				
+			</td>
+			<td>Return an array with all stat names.</td>
+		</tr>
+		<tr id="BPCreateNewStat" class="no-border-bottom">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>void</td>
+			<td>BPCreateNewStat</td>
+			<td>
+				[UStatBase](../ustatbase)* StatVariable
+			</td>
+			<td>BP node to create a new stat instance. Will detect automatically the class and name of the variable and create the right instance.</td>
+		</tr>
+		<tr class="no-border-top">
+			<td colspan="5">
+				<Aside type="danger">BP Only. Don't use it in C++.</Aside>
+			</td>
+		</tr>
+		<tr id="FindStatByName">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable" title="BlueprintCallable"/>
+			</td>
+			<td>[UStatBase](../ustatbase)*</td>
+			<td>FindStatByName</td>
+			<td>
+				FString StatName,<br/>
+				bool& HasFound
+			</td>
+			<td>Return the stat by its name if found, nullptr if not. HasFound will be set to true if found, else false.</td>
+		</tr>
+		<tr id="GetAllStats">
+			<td class="td-3-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+				<img class="UE-icon" src="../../assets/icons/api_function_virtual.png" alt="Virtual" title="Virtual"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintCallable, BlueprintPure" title="BlueprintCallable, BlueprintPure"/>
+			</td>
+			<td>TArray\<[UStatBase](../ustatbase)*\></td>
+			<td>GetAllStats</td>
+			<td>
+			</td>
+			<td>Return an array with all the stats in this component.</td>
+		</tr>
+	</tbody>
+</table>

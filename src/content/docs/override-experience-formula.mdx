@@ -1,0 +1,69 @@
+---
+title: Modify experience formula
+description: Learn how to modify experience formula
+---
+
+import { Card, CardGrid, Steps, LinkCard, Code, Aside } from '@astrojs/starlight/components';
+import experiencestatheader from './src/content/codes/experiencestat.h?raw';
+import experiencestatcpp from './src/content/codes/experiencestat.cpp?raw';
+
+To change the formula that determines the level according to experience in a [UExperienceStat](../classes/uexperiencestat), you will need to override its [GetExperienceRequired](../classes/uexperiencestat#GetExperienceRequired)() function.
+
+## Blueprint
+
+<Steps>
+	<ol>
+		<li>
+			<b>Right click in the Content Browser</b>
+			
+			Select <b>Blueprint Class.</b>
+			<img src="../../assets/bp_create_class.png" alt=""/>
+		</li>
+		<li>
+			<b>Pick parent class</b>
+			
+			In <b>All classes</b>, pick <b>ExperienceStat</b>.
+			<img src="../../assets/bp_create_experience.png" alt=""/>
+		</li>
+		<li>
+			<b>Open your experience stat blueprint</b>
+		</li>
+		<li>
+			<b>Mouseover the right side of the function panel to see the hidden menu "Override"</b>
+			
+			Override GetExperienceRequired().
+			<img src="../../assets/bp_override_experience.png" alt=""/>
+		</li>
+		<li>
+			<b>Change the formula by what you desire</b>
+			
+			<img src="../../assets/bp_formula_experience.png" alt=""/>
+			<Aside type="caution">Be sure that your formula is valid for InLevel == 0, even if unused.</Aside>
+		</li>
+	</ol>
+</Steps>
+
+## C++
+
+<Steps>
+	<ol>
+		<li>
+			<b>In Editor, go to Tools > New C++ Class</b>
+		</li>
+		<li>
+			<b>Pick parent class</b>
+			
+			In <b>All classes</b>, pick <b>ExperienceStat</b>.
+			<img src="../../assets/cpp_create_experience.png" alt=""/>
+		</li>
+		<li>
+			<b>Override GetExperienceRequired_Implementation()</b>
+			<Code code={experiencestatheader} lang="cpp" title={"header"}/>
+		</li>
+		<li>
+			<b>Change the formula by what you desire</b>
+			<Code code={experiencestatcpp} lang="cpp" title={"cpp"}/>
+			<Aside type="caution">Be sure that your formula is valid for InLevel == 0, even if unused.</Aside>
+		</li>
+	</ol>
+</Steps>

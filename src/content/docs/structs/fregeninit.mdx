@@ -1,0 +1,96 @@
+---
+title: FRegenInit
+description: FRegenInit
+---
+
+import { Card, CardGrid, Steps, LinkCard, Aside } from '@astrojs/starlight/components';
+
+FRegenInit is a struct to init a [URegenStat](../../classes/uregenstat).
+
+### Inheritance Hierarchy
+
+[FStatBaseInit](../fstatbaseinit)<br/>
+[FRangeValueInit](../frangevalueinit)
+
+### References
+
+<table class="table" style="--columns-count: 2;">
+	<tbody>
+		<tr>
+			<td>Module</td>
+			<td>RBStat</td>
+		</tr>
+		<tr>
+			<td>Header</td>
+			<td>/RBStat/Source/RBStat/Public/Stat/RegenStat.h</td>
+		</tr>
+		<tr>
+			<td>Include</td>
+			<td>#include "Stat/RegenStat.h"</td>
+		</tr>
+	</tbody>
+</table>
+
+### Constructors
+
+<table class="table" style="--columns-count: 3;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Name</th>
+			<th>Params</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="FRangeValueInit">
+			<td class="td-1-icon">
+				<img class="UE-icon" src="../../assets/icons/api_function_public.png" alt="Public function" title="Public function"/>
+			</td>
+			<td>FRangeValueInit</td>
+			<td>
+				float InCurrentValue,<br/>
+				float InMin,<br/>
+				float InMax,<br/>
+				float InTickRate,<br/>
+				float InRegenValue
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+### Variables
+
+<table class="table" style="--columns-count: 4;">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr id="TickRate">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+			</td>
+			<td>float</td>
+			<td>TickRate</td>
+			<td>
+				Time between each regeneration in second.
+			</td>
+		</tr>
+		<tr id="RegenValue">
+			<td class="td-2-icon">
+				<img class="UE-icon" src="../../assets/icons/api_variable_public.png" alt="Public variable" title="Public variable"/>
+				<img class="UE-icon" src="../../assets/icons/api_variable_meta_blueprint.png" alt="BlueprintReadWrite" title="BlueprintReadWrite"/>
+			</td>
+			<td>float</td>
+			<td>RegenValue</td>
+			<td>
+				Quantity added (or removed) to [CurrentValue](../../ustatbase#CurrentValue) by second.
+			</td>
+		</tr>
+	</tbody>
+</table>
