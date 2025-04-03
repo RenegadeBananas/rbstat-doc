@@ -5,7 +5,7 @@ import starlight from "@astrojs/starlight";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://renegadebananas.github.io",
-	base: "/",
+	base: "/rbstat-doc/",
 	integrations: [
 		starlight({
 			title: "My Docs",
